@@ -36,7 +36,7 @@ public class JwtToken implements Token {
             Jwts.parserBuilder().setSigningKey(jwtSecret.getRandomKey()).build().parse(token);
             return true;
         } catch (ExpiredJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
-            // throw them all;
+            System.out.print(e);
         }
         return false;
     }
