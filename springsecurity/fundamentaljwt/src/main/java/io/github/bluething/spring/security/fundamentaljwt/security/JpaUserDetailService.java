@@ -9,12 +9,8 @@ import java.util.Optional;
 
 public class JpaUserDetailService implements UserDetailsService {
 
-    private UserRepository userRepository;
-
     @Autowired
-    public JpaUserDetailService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
