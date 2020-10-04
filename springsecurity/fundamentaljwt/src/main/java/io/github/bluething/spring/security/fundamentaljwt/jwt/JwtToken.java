@@ -1,14 +1,16 @@
 package io.github.bluething.spring.security.fundamentaljwt.jwt;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
 public class JwtToken implements Token {
 
     private final JwtSecret jwtSecret;
@@ -30,6 +32,22 @@ public class JwtToken implements Token {
 
     @Override
     public boolean isTokenValid(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(jwtSecret.getRandomKey()).build().parse(token);
+            return true;
+        } catch (ExpiredJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
+            // throw them all;
+        }
         return false;
+    }
+
+    @Override
+    public String getPrincipal(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(jwtSecret.getRandomKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 }
