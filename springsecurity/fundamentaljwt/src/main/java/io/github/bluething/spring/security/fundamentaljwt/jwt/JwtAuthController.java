@@ -24,7 +24,7 @@ public class JwtAuthController {
     public ResponseEntity authenticateUser(@Valid @RequestBody AuthRequest authRequest) {
         String token = jwtAuthService.getToken(authRequest);
         return ResponseEntity.ok()
-                .header("Authorization", token)
+                .header("Authorization", "Bearer " + token)
                 .build();
     }
 
