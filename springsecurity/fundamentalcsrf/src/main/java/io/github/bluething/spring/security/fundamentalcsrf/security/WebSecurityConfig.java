@@ -13,6 +13,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // GENERALLY DON'T DO THIS!
         //http.csrf().disable();
 
+        http.csrf(c -> {
+            c.ignoringAntMatchers("/csrfdiabled/**");
+        });
 
     }
 }
