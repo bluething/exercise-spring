@@ -16,7 +16,7 @@ How to prevent CSRF attack:
 In Spring Security, we can use csrf token (_csrf).  
 Spring Security will generate _csrf token every time we refresh the page.  
 _csrf token needed by server to authenticated if the mutation request come from who ask the form.  
-There are case when we don't need _csrf token, OAuth.  
+There are case when we don't need _csrf token, OAuth. OAuth work completely different, they have own token mechanism.  
 _csrf token generate in CsrfFilter.
 
 References:  
