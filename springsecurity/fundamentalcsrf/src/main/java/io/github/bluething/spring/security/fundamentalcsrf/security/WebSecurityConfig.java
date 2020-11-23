@@ -15,6 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf(c -> {
             c.ignoringAntMatchers("/csrfdiabled/**");
+            c.csrfTokenRepository(new CustomCsrfTokenRepository());
         });
 
     }
