@@ -16,6 +16,7 @@ public class MainController {
     @PostMapping("/test")
     @ResponseBody
     public String test() {
+        System.out.println("boom :(");
         return "TEST";
     }
 
