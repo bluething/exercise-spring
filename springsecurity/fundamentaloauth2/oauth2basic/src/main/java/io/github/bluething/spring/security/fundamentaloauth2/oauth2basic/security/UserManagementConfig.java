@@ -42,7 +42,8 @@ public class UserManagementConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+        http.formLogin();
+        http.authorizeRequests().anyRequest().authenticated();
     }
 
 }
