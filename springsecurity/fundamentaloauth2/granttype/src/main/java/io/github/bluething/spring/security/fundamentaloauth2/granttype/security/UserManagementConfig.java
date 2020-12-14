@@ -20,7 +20,7 @@ public class UserManagementConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         UserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
 
-        UserDetails user = User.withUsername("fulen")
+        UserDetails user = User.withUsername("fulan")
                 .password("12345")
                 .authorities("read")
                 .build();
@@ -35,8 +35,9 @@ public class UserManagementConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Override
     @Bean
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
