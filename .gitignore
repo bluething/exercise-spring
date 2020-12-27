@@ -2,3 +2,5 @@
 springsecurity/.idea/
 
 .idea/
+
+logging/application.log
