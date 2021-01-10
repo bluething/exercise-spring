@@ -16,4 +16,9 @@ public class Greeting {
         return "Hiii";
     }
 
+    @GetMapping(path = "/hiitrouble")
+    public String callTroubleMaker() throws Exception {
+        throw  new Exception("Ouch :(");
+    }
+
 }
