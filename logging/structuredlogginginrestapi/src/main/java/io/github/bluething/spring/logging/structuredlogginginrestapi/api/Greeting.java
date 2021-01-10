@@ -2,6 +2,7 @@ package io.github.bluething.spring.logging.structuredlogginginrestapi.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class Greeting {
 
     private final Logger LOGGER = LoggerFactory.getLogger(Greeting.class);
+
+    private final TroubleMaker troubleMaker;
+
+    @Autowired
+    public Greeting(TroubleMaker troubleMaker) {
+        this.troubleMaker = troubleMaker;
+    }
 
     @GetMapping(path = "/hii")
     public String sayHii() {
@@ -18,7 +26,12 @@ public class Greeting {
 
     @GetMapping(path = "/hiitrouble")
     public String callTroubleMaker() throws Exception {
-        throw  new Exception("Ouch :(");
+        return troubleMaker.doSomethingBad();
+    }
+
+    @GetMapping(path = "/makeownfault")
+    public String makeOwnFault() throws Exception {
+        throw new Exception("Ouch :(");
     }
 
 }
