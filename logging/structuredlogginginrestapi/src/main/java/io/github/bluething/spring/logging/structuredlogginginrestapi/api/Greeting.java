@@ -13,7 +13,7 @@ public class Greeting {
     @GetMapping(path = "/hii")
     public String sayHii() {
         LOGGER.info("entering GET handler");
-        return "Hii";
+        return "Hiii";
     }
 
 }
