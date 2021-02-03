@@ -4,12 +4,19 @@
     <property resource="application.properties"/>
     <contextName>${spring.application.name}</contextName>
 
+    <property resource="META-INF/build-info.properties" />
+
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <contextName>
                     <fieldName>App</fieldName>
                 </contextName>
+                <version>
+                    <fieldName>version</fieldName>
+                    <writeAsInteger>false</writeAsInteger>
+                    <version>${build.version}</version>
+                </version>
                 <timestamp>
                     <fieldName>ts</fieldName>
                     <timeZone>UTC</timeZone>
