@@ -39,6 +39,10 @@ dependencyManagement {
     }
 }
 
+springBoot {
+    buildInfo()
+}
+
 test {
     useJUnitPlatform()
 }
